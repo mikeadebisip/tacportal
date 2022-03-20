@@ -61,6 +61,7 @@ export class StudentResolver {
         .into(Student)
         .values({
           ...optionsOne,
+          ...optionsTwo,
           uniqueId,
           password: hashedPassword,
           username: optionsThree.username,

@@ -43,7 +43,7 @@ export default class MyApp extends App {
 * Licensed under MIT (https://dev.mikeadebisi.com/licenses/MIT)
 
 
-* Coded by - Michael E Adebisi | Dev Michael LLC ~ mikeadebisi.com
+* Coded by - Michael E Adebisi | Dev Michael LLC ~ https://github.com/devmikellc
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.

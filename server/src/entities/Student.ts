@@ -37,7 +37,7 @@ export class Student extends BaseEntity {
 
   @Field()
   @Column({ unique: true })
-  email?: string;
+  email: string;
 
   @Field()
   @Column({nullable: true, default: null})
@@ -45,7 +45,7 @@ export class Student extends BaseEntity {
 
   @Field()
   @Column({ unique: true, nullable: true })
-  phoneNumber?: string;
+  phoneNumber: string;
 
   @Field()
   @Column({ type: 'enum', enum: genderType, nullable: true })
@@ -89,16 +89,22 @@ export class Student extends BaseEntity {
 
   @Field()
   @Column({nullable: true, default: null})
-  studentSchool?: string;
+  studentSchool: string;
 
 
   @Field()
   @Column({nullable: true, default: null})
-  courseName?: string;
+  courseName: string;
 
   @Field()
   @Column({nullable: true, default: null})
   amountPaid?: number;
+
+  @Field()
+  @Column({nullable: true, default: null})
+  paymentMode?: string;
+
+
 
   @Field()
   @Column({nullable: true, default: true})
@@ -106,7 +112,7 @@ export class Student extends BaseEntity {
 
   @Field()
   @Column({nullable: false, unique: true})
-  username?: string;
+  username: string;
 
   @Field()
   @Column()
@@ -114,9 +120,9 @@ export class Student extends BaseEntity {
 
   @Field(() => String)
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt: Date;
 
   @Field(() => String)
   @UpdateDateColumn()
-  updatedAt?: Date;
+  updatedAt: Date;
 }

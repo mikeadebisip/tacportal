@@ -1,0 +1,13 @@
+mutation Enrol(
+  $optionsThree: EnrolInputsThree!
+  $optionsTwo: EnrolInputsTwo!
+  $optionsOne: EnrolInputsOne!
+) {
+  enrol(
+    optionsThree: $optionsThree
+    optionsTwo: $optionsTwo
+    optionsOne: $optionsOne
+  ) {
+    ...StudentResponse
+  }
+}

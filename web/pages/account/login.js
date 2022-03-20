@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/router';
-import Link from "next/link";
 import { Formik, Form } from "formik";
 import { useLoginMutation } from '../../generated/graphql.js'
 // layout for page
@@ -53,7 +52,7 @@ export default function Login() {
                 <Formik
                   initialValues={{ usernameOrEmail, password }}
                   enableReinitialize
-                  onSubmit={async (values, { setErrors }) => {
+                  onSubmit={async (values) => {
                     setPwdError(false)
                     setUsernameError(false)
                     const response = await login({
@@ -135,9 +134,10 @@ export default function Login() {
                       <div className="text-center mt-6">
                         <button
                           className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                          disabled={isSubmitting}
                           type="submit"
                         >
-                          Sign In
+                          {isSubmitting ? 'Loading ...' : 'Sign In'}
                         </button>
                       </div>
                     </Form>

@@ -69,6 +69,8 @@ export const validateEnrolInputsTwo = (optionsTwo: EnrolInputsTwo) => {
   validator(optionsTwo.courseName);
   // validator(optionsTwo.receipt);
   validator(optionsTwo.studentSchool);
+  validator(optionsTwo.amountPaid);
+  validator(optionsTwo.paymentMode);
   return null;
 };
 export const validateEnrolInputsThree = (optionsThree: EnrolInputsThree) => {

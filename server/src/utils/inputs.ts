@@ -50,11 +50,17 @@ export class EnrolInputsOne {
 
 @InputType()
 export class EnrolInputsTwo {
-  @Field({ nullable: true })
+  @Field()
   studentSchool?: string;
 
-  @Field({ nullable: true })
+  @Field()
   courseName?: string;
+
+  @Field()
+  amountPaid?: number;
+
+  @Field()
+  paymentMode?: string;
 
   // @Field({nullable:true})
   // receipt?: string;
@@ -72,7 +78,7 @@ export class EnrolInputsThree {
 export class LoginInput {
   @Field()
   usernameOrEmail: string;
-  
+
   @Field()
-  password: string
+  password: string;
 }

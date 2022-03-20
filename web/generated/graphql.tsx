@@ -8,7 +8,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string; 
+  ID: string;
   String: string;
   Boolean: boolean;
   Int: number;
@@ -173,6 +173,15 @@ export type MiniStudentResponseFragment = { __typename?: 'Student', id: number, 
 
 export type StudentResponseFragment = { __typename?: 'StudentResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, student?: { __typename?: 'Student', id: number, uniqueId: string, email: string, createdAt: string, username: string, active: boolean } | null };
 
+export type EnrolMutationVariables = Exact<{
+  optionsThree: EnrolInputsThree;
+  optionsTwo: EnrolInputsTwo;
+  optionsOne: EnrolInputsOne;
+}>;
+
+
+export type EnrolMutation = { __typename?: 'Mutation', enrol?: { __typename?: 'StudentResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, student?: { __typename?: 'Student', id: number, uniqueId: string, email: string, createdAt: string, username: string, active: boolean } | null } | null };
+
 export type LoginMutationVariables = Exact<{
   options: LoginInput;
 }>;
@@ -201,6 +210,45 @@ export const StudentResponseFragmentDoc = gql`
   }
 }
     ${MiniStudentResponseFragmentDoc}`;
+export const EnrolDocument = gql`
+    mutation Enrol($optionsThree: EnrolInputsThree!, $optionsTwo: EnrolInputsTwo!, $optionsOne: EnrolInputsOne!) {
+  enrol(
+    optionsThree: $optionsThree
+    optionsTwo: $optionsTwo
+    optionsOne: $optionsOne
+  ) {
+    ...StudentResponse
+  }
+}
+    ${StudentResponseFragmentDoc}`;
+export type EnrolMutationFn = Apollo.MutationFunction<EnrolMutation, EnrolMutationVariables>;
+
+/**
+ * __useEnrolMutation__
+ *
+ * To run a mutation, you first call `useEnrolMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useEnrolMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [enrolMutation, { data, loading, error }] = useEnrolMutation({
+ *   variables: {
+ *      optionsThree: // value for 'optionsThree'
+ *      optionsTwo: // value for 'optionsTwo'
+ *      optionsOne: // value for 'optionsOne'
+ *   },
+ * });
+ */
+export function useEnrolMutation(baseOptions?: Apollo.MutationHookOptions<EnrolMutation, EnrolMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<EnrolMutation, EnrolMutationVariables>(EnrolDocument, options);
+      }
+export type EnrolMutationHookResult = ReturnType<typeof useEnrolMutation>;
+export type EnrolMutationResult = Apollo.MutationResult<EnrolMutation>;
+export type EnrolMutationOptions = Apollo.BaseMutationOptions<EnrolMutation, EnrolMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($options: LoginInput!) {
   login(options: $options) {
